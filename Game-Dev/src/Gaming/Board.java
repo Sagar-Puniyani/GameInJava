@@ -4,18 +4,19 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 public class Board extends JPanel {
     BufferedImage backGroundImage;
     public Board(){
-        this.setSize(1500 , 950);
+        this.setSize(1500 , 800);
         LoadImageBackground();
     }
     
 private void LoadImageBackground(){
     try {
-        backGroundImage = ImageIO.read(Board.class.getResource("Images/Game_Background_188.png"));
+        backGroundImage = ImageIO.read(new File("Game-Dev/src/Images//Game_Background_188.png"));
     } catch (IOException e) {
         System.out.println("BackGround Image Not Found .....");
         System.exit(1);
