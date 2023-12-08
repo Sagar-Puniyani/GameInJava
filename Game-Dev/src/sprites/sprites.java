@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import java.awt.Graphics;
 
 public abstract class sprites {
+    int speed;
     int x;
     int y;
     int h;
