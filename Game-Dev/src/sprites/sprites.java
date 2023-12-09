@@ -5,10 +5,10 @@ import java.awt.Graphics;
 
 public abstract class sprites {
     int speed;
-    int x;
-    int y;
-    int h;
-    int w;
+    public int x;
+    public int y;
+    public int h;
+    public int w;
     
     ImageIcon Image;
 

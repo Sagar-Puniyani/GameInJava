@@ -2,6 +2,9 @@ package Gaming;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -30,8 +33,8 @@ public class Board extends JPanel {
 
 
     private void LoadEnemies(){
-        int x = 250;
-        int gap = 350;
+        int x = 100;
+        int gap = 400;
         int speed = 4;
         int speedeven = 5;
         int speedodd = 2;
@@ -45,6 +48,26 @@ public class Board extends JPanel {
                 speed += speedodd;
             }
         }
+    }
+
+    private void GameOver(Graphics pen ){
+        for (Enemy enemy : enemies ){
+            if (isCollide(enemy)){
+                Font font = new Font("TimesRoman", Font.BOLD, 30);
+            pen.setFont(font);
+            pen.setColor(Color.RED);
+            pen.drawString("Game Over !!! ", 750, 450);
+            timer.stop();
+            }
+        }
+    }
+
+    private boolean isCollide(Enemy enemy ){
+        int xDistance = Math.abs(player.x - enemy.x);
+        int yDistance = Math.abs(player.y - enemy.y);
+        int MaxH = Math.max(player.h, enemy.h);
+        int MaxW = Math.max(player.w, enemy.w);
+        return MaxH-80 >= yDistance && MaxW-80 >= xDistance;
     }
 
     private void bindEvents() {
@@ -103,6 +126,6 @@ public class Board extends JPanel {
         player.draw(pen);
         player.move();
         printEnemies(pen);
-        
+        GameOver(pen);
     }
 }
