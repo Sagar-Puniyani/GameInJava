@@ -9,6 +9,8 @@ import java.io.IOException;
 import sprites.Player;
 import sprites.Enemy;
 import javax.swing.Timer;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
 public class Board extends JPanel {
     BufferedImage backGroundImage;
@@ -21,11 +23,15 @@ public class Board extends JPanel {
         player = new Player();
         LoadEnemies();
         GameLoop();
+        setFocusable(true);
+        bindEvents();
     }
 
+
+
     private void LoadEnemies(){
-        int x = 500;
-        int gap = 250;
+        int x = 250;
+        int gap = 350;
         int speed = 4;
         int speedeven = 5;
         int speedodd = 2;
@@ -39,6 +45,30 @@ public class Board extends JPanel {
                 speed += speedodd;
             }
         }
+    }
+
+    private void bindEvents() {
+        addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                // Handle key typed event
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+                    player.setSpeed(10);
+                }
+                else if (e.getKeyCode() == KeyEvent.VK_LEFT){
+                    player.setSpeed(-10);
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                player.setSpeed(0);
+            }
+        });
     }
 
     private void GameLoop(){
@@ -71,6 +101,7 @@ public class Board extends JPanel {
         // All the Printing logic is here 
         pen.drawImage(backGroundImage ,0,0,1500,950,null);
         player.draw(pen);
+        player.move();
         printEnemies(pen);
         
     }

@@ -8,7 +8,7 @@ public class Enemy extends sprites {
         this.x = x ;
         this.speed = speed;
         y=90;
-        w=200;
+        w=150;
         h=200;
         Image = new ImageIcon("D:/Web_development/GameDev/Game-Dev/src/Images/spider.gif");
     }
