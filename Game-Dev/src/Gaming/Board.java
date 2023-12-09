@@ -51,9 +51,16 @@ public class Board extends JPanel {
     }
 
     private void GameOver(Graphics pen ){
+        if (player.OutofScreen){
+            Font font = new Font("TimesRoman", Font.BOLD, 30);
+            pen.setFont(font);
+            pen.setColor(Color.RED);
+            pen.drawString("Game Win !!! ", 750, 450);
+            timer.stop();
+        }
         for (Enemy enemy : enemies ){
             if (isCollide(enemy)){
-                Font font = new Font("TimesRoman", Font.BOLD, 30);
+            Font font = new Font("TimesRoman", Font.BOLD, 30);
             pen.setFont(font);
             pen.setColor(Color.RED);
             pen.drawString("Game Over !!! ", 750, 450);
